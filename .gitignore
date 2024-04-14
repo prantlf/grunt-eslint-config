@@ -1,0 +1,6 @@
+.DS_Store
+coverage
+lib/index.cjs
+lib/config-cjs.js
+lib/*.map
+node_modules

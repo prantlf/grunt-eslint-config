@@ -1,0 +1,74 @@
+name: Build and Test or Release
+
+on:
+  push:
+    branches:
+      - master
+    tags-ignore:
+      - '**'
+    paths-ignore:
+      - '**/*.md'
+      - LICENSE
+  pull_request:
+
+jobs:
+
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v2
+      with:
+        version: latest
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 'lts/*'
+        cache: 'pnpm'
+    - run: pnpm i --frozen-lockfile --no-verify-store-integrity
+    - run: npm run build
+    - run: |
+        npm run lint
+        npm run check
+
+  windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v2
+      with:
+        version: latest
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 'lts/*'
+        cache: 'pnpm'
+    - run: pnpm i --frozen-lockfile --no-verify-store-integrity
+    - run: npm run build
+    - run: npm run test-windows
+
+  macos:
+    needs:
+      - linux
+      - windows
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: pnpm/action-setup@v2
+      with:
+        version: latest
+    - uses: actions/setup-node@v4
+      with:
+        node-version: 'lts/*'
+        cache: 'pnpm'
+    - run: pnpm i --frozen-lockfile --no-verify-store-integrity
+    - run: npm run build
+    - run: npm test
+    - uses: codecov/codecov-action@v4
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+    - uses: prantlf/publish-release-action@v1
+      if: ${{ github.ref_name == 'master' }}
+      with:
+        no-archives: true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

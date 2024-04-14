@@ -1,0 +1,11 @@
+{
+  "files.exclude": {
+    "coverage": true,
+    "node_modules": true,
+    "**/*.map": true,
+  },
+  "search.exclude": {
+    "**/lib/index.cjs": true,
+    "**/lib/config-cjs.cjs": true
+  }
+}

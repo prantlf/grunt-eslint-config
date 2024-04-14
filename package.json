@@ -1,0 +1,83 @@
+{
+  "name": "grunt-eslint-config",
+  "version": "0.0.1",
+  "description": "Loads `.eslintrc.js` or `.eslintignore` for being used as the options of `grunt-eslint`. Helps keeping the configuration at a single place.",
+  "author": {
+    "name": "Ferdinand Prantl",
+    "email": "prantlf@gmail.com",
+    "url": "http://prantl.tk"
+  },
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/prantlf/grunt-eslint-config/blob/master/LICENSE"
+    }
+  ],
+  "homepage": "https://github.com/prantlf/grunt-eslint-config#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/prantlf/grunt-eslint-config.git"
+  },
+  "bugs": {
+    "url": "https://github.com/prantlf/grunt-eslint-config/issues"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "type": "module",
+  "main": "lib/index.cjs",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    "require": "./lib/index.cjs",
+    "import": "./lib/index.js",
+    "types": "./lib/index.d.ts"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "lint": "eslint '**/*.{js,cjs}' && grunt && tsc --noEmit --lib es2022 test/types.test.ts",
+    "check": "teru-cjs test/*.cjs && teru-esm test/*.js",
+    "cover": "c8 teru-esm test/*.js",
+    "test": "eslint '**/*.{js,cjs}' && grunt && tsc --noEmit --lib es2022 test/types.test.ts && teru-cjs test/*.cjs && c8 teru-esm test/*.js",
+    "test-windows": "grunt && tsc --noEmit --lib es2022 test\\types.test.ts"
+  },
+  "c8": {
+    "check-coverage": "true",
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "branches": 100,
+    "functions": 100,
+    "lines": 100,
+    "statements": 100
+  },
+  "dependencies": {
+    "debug": "^4.3.4",
+    "grunt-eslintignore": "^0.2.0"
+  },
+  "devDependencies": {
+    "c8": "^9.1.0",
+    "eslint": "^8.57.0",
+    "eslint-config-standard": "^17.1.0",
+    "grunt": "^1.6.1",
+    "grunt-eslint": "^24.3.0",
+    "rollup": "^4.14.2",
+    "rollup-plugin-cleanup": "^3.2.1",
+    "tehanu": "^1.0.1",
+    "tehanu-repo-coco": "^1.0.0",
+    "tehanu-teru": "^1.0.0",
+    "typescript": "^5.4.5"
+  },
+  "keywords": [
+    "gruntplugin",
+    "grunt",
+    "eslint",
+    "config",
+    "eslintignore"
+  ]
+}
