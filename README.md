@@ -7,6 +7,8 @@
 
 Loads [`.eslintrc.js`] or [`.eslintignore`] for being used as the options of [`grunt-eslint`]. Helps keeping the configuration at a single place.
 
+See [grunt-eslintignore] for reusing just `eslintignore`.
+
 ## How It Works
 
 Let's say that you let all JavaScript files in your project checked as simply as possible by `eslint '**/*.js'`. You'll use `.eslintrc.js` or `.eslintignore` to exclude generated files and build tools. This setup allows using IDE extensions with [`eslint`]. However, if you use [`grunt`] for building your project, you'll find that `grunt-eslint` doesn't use ignore patterns from `.eslintrc.js` or `.eslintignore`. You'd have to duplicate the ignored patterns in the [`Gruntfile`], when specifying the file patterns to check. You'll be able to reuse `.eslintrc.js` or `.eslintignore` , when configuring the `eslint` task:
@@ -102,6 +104,12 @@ interface ReadEslintConfigOptions {
   maxDepthToRoot?: number
 }
 
+// An object to be used as options for the grunt task `eslint`.
+interface GruntEslintOptions {
+  options: { overrideConfigFile: string },
+  validate: string[]
+}
+
 // Reads the contents of `.eslintrc.{js,cjs,mjs}` and returns an object with options
 // for the `grunt-eslint` task. If no config file is found, an error will be thrown.
 //
@@ -131,6 +139,7 @@ Licensed under the MIT license.
 [NPM]: https://www.npmjs.com/
 [PNPM]: https://pnpm.io/
 [Yarn]: https://yarnpkg.com/
+[grunt-eslintignore]: https://github.com/prantlf/grunt-eslintignore
 [`.eslintrc.js`]: https://eslint.org/docs/v8.x/use/configure/configuration-files
 [`.eslintignore`]: https://eslint.org/docs/latest/use/configure/ignore-deprecated#the-eslintignore-file
 [`ignorePatterns`]: https://eslint.org/docs/latest/use/configure/ignore-deprecated#ignorepatterns-in-config-files

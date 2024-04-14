@@ -13,9 +13,7 @@ export interface ReadEslintConfigOptions extends ReadEslintIgnoreOptions {
 }
 
 /**
- * An object to be used as optoins for the grunt task `eslint`.
- * 
- * @param options see `ReadEslintConfigOptions`
+ * An object to be used as options for the grunt task `eslint`.
  */
 export interface GruntEslintOptions {
   options: { overrideConfigFile: string },
