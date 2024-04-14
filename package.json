@@ -58,7 +58,7 @@
   },
   "dependencies": {
     "debug": "^4.3.4",
-    "grunt-eslintignore": "^0.2.0"
+    "grunt-eslintignore": "^1.0.0"
   },
   "devDependencies": {
     "c8": "^9.1.0",

@@ -9,8 +9,8 @@ dependencies:
     specifier: ^4.3.4
     version: 4.3.4
   grunt-eslintignore:
-    specifier: ^0.2.0
-    version: 0.2.0
+    specifier: ^1.0.0
+    version: 1.0.0
 
 devDependencies:
   c8:
@@ -1293,8 +1293,8 @@ packages:
       - supports-color
     dev: true
 
-  /grunt-eslintignore@0.2.0:
-    resolution: {integrity: sha512-5341TerATfqbgRYQd7eBXjeabjPaYrN0v+mXLcCpRjT4TqdrK5lHksZaM9SwjObzuIv0s8gl8dRhQIOD0qFmEA==}
+  /grunt-eslintignore@1.0.0:
+    resolution: {integrity: sha512-eurgI2pkia7+969dNt/KN5ISlHowFcY162+bVtOTq2t0IYoc5TXI+NCRMSWwem5iNaTNWgIQdu8EX2VRfU4SuA==}
     engines: {node: '>=16'}
     dependencies:
       debug: 4.3.4
